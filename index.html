@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIプログラミング学習コミュニティ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .features {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .about {
+            padding: 100px 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .pricing {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .pricing h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: #666;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">AI Programming Community</div>
+            <ul class="nav-links">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#features">特徴</a></li>
+                <li><a href="#about">概要</a></li>
+                <li><a href="#pricing">料金</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>AIプログラミングの未来を一緒に学ぼう</h1>
+            <p>最新のAI技術とプログラミングスキルを学べる実践的なコミュニティ</p>
+            <a href="#pricing" class="cta-button">今すぐ参加する</a>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>なぜ私たちのコミュニティを選ぶのか</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>最新AI技術</h3>
+                    <p>GPT、Claude、Geminiなど最新のAI技術を活用したプログラミング手法を学べます</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>活発なコミュニティ</h3>
+                    <p>経験豊富な開発者から初心者まで、互いに学び合える環境を提供します</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>実践的プロジェクト</h3>
+                    <p>理論だけでなく、実際のプロジェクトを通じて実践的なスキルを身につけられます</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>豊富な学習リソース</h3>
+                    <p>チュートリアル、コードサンプル、ベストプラクティスなど充実した教材を提供</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>個別サポート</h3>
+                    <p>メンターによる1対1のサポートで、あなたの学習を加速させます</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>キャリア支援</h3>
+                    <p>就職・転職活動のサポートや、フリーランス案件の紹介も行います</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div>
+                    <h2>AIプログラミングの新時代</h2>
+                    <p>人工知能の急速な発展により、プログラミングの世界は大きく変わろうとしています。私たちのコミュニティでは、この変化に対応できる開発者を育成することを目標としています。</p>
+                    <p>初心者から上級者まで、すべてのレベルの学習者に対応したカリキュラムと、実際の業界で活躍する専門家による指導で、あなたのスキルアップをサポートします。</p>
+                    <p>単なる技術習得だけでなく、AI倫理や責任あるAI開発についても学び、未来の技術リーダーを目指しましょう。</p>
+                </div>
+                <div>
+                    <img src="https://via.placeholder.com/500x400/667eea/ffffff?text=AI+Programming" alt="AI Programming" style="width: 100%; border-radius: 15px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>1,500+</h3>
+                    <p>アクティブメンバー</p>
+                </div>
+                <div class="stat-item">
+                    <h3>200+</h3>
+                    <p>完了プロジェクト</p>
+                </div>
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>就職成功率</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>コミュニティサポート</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>料金プラン</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>ベーシック</h3>
+                    <div class="price">¥9,800<small>/月</small></div>
+                    <ul class="pricing-features">
+                        <li>✓ 基本的な学習コンテンツ</li>
+                        <li>✓ コミュニティフォーラム参加</li>
+                        <li>✓ 月1回のグループセッション</li>
+                        <li>✓ 基本的なプロジェクト参加</li>
+                    </ul>
+                    <a href="#" class="cta-button">選択する</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>プロ</h3>
+                    <div class="price">¥19,800<small>/月</small></div>
+                    <ul class="pricing-features">
+                        <li>✓ 全ての学習コンテンツ</li>
+                        <li>✓ 1対1メンタリング（月2回）</li>
+                        <li>✓ 実践プロジェクト参加</li>
+                        <li>✓ 就職・転職サポート</li>
+                        <li>✓ 優先サポート</li>
+                    </ul>
+                    <a href="#" class="cta-button">選択する</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>エンタープライズ</h3>
+                    <div class="price">¥39,800<small>/月</small></div>
+                    <ul class="pricing-features">
+                        <li>✓ プロプランの全機能</li>
+                        <li>✓ 週1回の1対1セッション</li>
+                        <li>✓ カスタムプロジェクト開発</li>
+                        <li>✓ 専用チャットサポート</li>
+                        <li>✓ 業界コネクション紹介</li>
+                    </ul>
+                    <a href="#" class="cta-button">選択する</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>コミュニティ</h3>
+                    <a href="#">Discord参加</a>
+                    <a href="#">Slack参加</a>
+                    <a href="#">GitHub</a>
+                    <a href="#">YouTube</a>
+                </div>
+                <div class="footer-section">
+                    <h3>学習リソース</h3>
+                    <a href="#">チュートリアル</a>
+                    <a href="#">コードサンプル</a>
+                    <a href="#">ブログ</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="footer-section">
+                    <h3>サポート</h3>
+                    <a href="#">お問い合わせ</a>
+                    <a href="#">技術サポート</a>
+                    <a href="#">利用規約</a>
+                    <a href="#">プライバシーポリシー</a>
+                </div>
+                <div class="footer-section">
+                    <h3>お問い合わせ</h3>
+                    <p>Email: info@ai-programming.jp</p>
+                    <p>Tel: 03-1234-5678</p>
+                    <p>〒100-0001</p>
+                    <p>東京都千代田区千代田1-1</p>
+                </div>
+            </div>
+            <p>&copy; 2024 AI Programming Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(102, 126, 234, 0.95)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            }
+        });
+    </script>
+</body>
+</html>
