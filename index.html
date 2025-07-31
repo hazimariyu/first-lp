@@ -3,503 +3,664 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIプログラミング学習コミュニティ</title>
+    <title>はじまり湯 - あなたのココロとカラダに、はっぴーのはじまりを</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
-            line-height: 1.6;
+            font-family: 'Hiragino Sans', 'ヒラギノ角ゴ ProN W3', 'メイリオ', Meiryo, sans-serif;
+            line-height: 1.8;
             color: #333;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #FFA500 100%);
+            min-height: 100vh;
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
+        
+        /* メインビジュアル */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 150px 0 100px;
+            background: linear-gradient(rgba(255, 165, 0, 0.1), rgba(135, 206, 235, 0.1)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%2387CEEB" width="100%" height="100%"/><circle fill="%23FFA500" cx="1000" cy="100" r="80"/><path fill="%2398FB98" d="M0,400 Q300,350 600,400 T1200,400 L1200,600 L0,600 Z"/><rect fill="%23FF6347" x="500" y="300" width="200" height="150" rx="10"/><rect fill="%23FF4500" x="480" y="280" width="240" height="20" rx="10"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
             text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-
+        
         .hero h1 {
             font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease-out;
+            margin-bottom: 30px;
+            animation: bounce 2s infinite;
         }
-
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
-        }
-
-        .features {
-            padding: 100px 0;
-            background: #f8f9fa;
-        }
-
-        .features h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
             font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #667eea;
+            margin-bottom: 40px;
         }
-
-        .about {
-            padding: 100px 0;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-
-        .about p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: #666;
-        }
-
-        .stats {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        
+        /* セクション共通スタイル */
+        .section {
             padding: 80px 0;
+            margin: 40px 0;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .pricing {
-            padding: 100px 0;
-            background: #f8f9fa;
-        }
-
-        .pricing h2 {
-            text-align: center;
+        
+        .section h2 {
             font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .pricing-card {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            color: #FF6347;
             text-align: center;
+            margin-bottom: 40px;
             position: relative;
         }
-
-        .pricing-card.featured {
-            border: 3px solid #667eea;
-            transform: scale(1.05);
+        
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #FFA500, #87CEEB);
+            margin: 10px auto;
+            border-radius: 2px;
         }
-
-        .pricing-card h3 {
+        
+        .intro-text {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #555;
+        }
+        
+        /* 価値セクション */
+        .values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .value-item {
+            background: linear-gradient(135deg, #FFF8DC, #F0F8FF);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .value-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-item h3 {
             font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #333;
+            color: #FF6347;
+            margin-bottom: 20px;
         }
-
-        .price {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 2rem;
+        
+        .value-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
         }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
+        
+        /* アンケートセクション */
+        .survey-section {
+            background: linear-gradient(135deg, #FFE4B5, #E0FFFF);
+            text-align: center;
         }
-
-        .pricing-features li {
-            padding: 0.5rem 0;
-            color: #666;
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #FFA500, #FF6347);
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(255, 99, 71, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 30px;
         }
-
-        footer {
-            background: #333;
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 99, 71, 0.4);
+        }
+        
+        /* 夢セクション */
+        .dream-section {
+            background: linear-gradient(135deg, #F0E68C, #DDA0DD);
+        }
+        
+        /* フッター */
+        .footer {
+            background: linear-gradient(135deg, #2F4F4F, #4682B4);
             color: white;
             padding: 50px 0;
             text-align: center;
         }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+        
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
         }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #667eea;
+        
+        .contact-info {
+            margin-bottom: 30px;
         }
-
-        .footer-section a {
-            color: #ccc;
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #FFA500;
+        }
+        
+        /* アンケート用スタイル */
+        .survey-form {
+            margin-top: 30px;
+        }
+        
+        .question {
+            margin-bottom: 40px;
+        }
+        
+        .question h3 {
+            font-size: 1.5rem;
+            color: #FF6347;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .option-button {
+            background: linear-gradient(135deg, #FFF8DC, #F0F8FF);
+            border: 3px solid transparent;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .option-button.selected {
+            background: linear-gradient(135deg, #FFE4B5, #E0FFFF);
+            border-color: #FF6347;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 99, 71, 0.3);
+        }
+        
+        .option-button.selected::before {
+            content: '✓';
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: #FF6347;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .option-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
             display: block;
-            margin: 0.5rem 0;
+        }
+        
+        .option-text {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .other-option {
+            grid-column: 1 / -1;
+            margin-top: 15px;
+        }
+        
+        .other-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+            background: #fff;
+            transition: border-color 0.3s ease;
+        }
+        
+        .other-input:focus {
+            outline: none;
+            border-color: #FF6347;
+        }
+        
+        .other-input.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .submit-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+        }
+        
+        .submit-section h3 {
+            font-size: 1.3rem;
+            color: #FF6347;
+            margin-bottom: 15px;
+        }
+        
+        .submit-section p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        .submit-button {
+            background: linear-gradient(45deg, #FFA500, #FF6347);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 99, 71, 0.3);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 99, 71, 0.4);
+        }
+        
+        .submit-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
-        .footer-section a:hover {
-            color: #667eea;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        /* レスポンシブ */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
             .hero h1 {
                 font-size: 2.5rem;
             }
-
-            .about-content {
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+            
+            .values {
                 grid-template-columns: 1fr;
             }
-
-            .pricing-card.featured {
-                transform: none;
+            
+            .options-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 12px;
+            }
+            
+            .option-button {
+                padding: 12px;
+            }
+            
+            .option-icon {
+                font-size: 2rem;
+            }
+            
+            .option-text {
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo">AI Programming Community</div>
-            <ul class="nav-links">
-                <li><a href="#home">ホーム</a></li>
-                <li><a href="#features">特徴</a></li>
-                <li><a href="#about">概要</a></li>
-                <li><a href="#pricing">料金</a></li>
-                <li><a href="#contact">お問い合わせ</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="home" class="hero">
+    <!-- メインビジュアル -->
+    <section class="hero">
         <div class="container">
-            <h1>AIプログラミングの未来を一緒に学ぼう</h1>
-            <p>最新のAI技術とプログラミングスキルを学べる実践的なコミュニティ</p>
-            <a href="#pricing" class="cta-button">今すぐ参加する</a>
+            <h1>ようこそ、はじまり湯へ！</h1>
+            <p>あなたのココロとカラダに、はっぴーのはじまりを</p>
+            <div style="margin: 30px 0;">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cg transform='translate(80,80)'%3E%3Cpath d='M0,40 Q-10,20 0,0 Q20,-10 40,0 Q60,10 60,20 Q70,30 60,40 Q50,50 40,50 Q30,60 20,60 Q10,50 0,40 Z' fill='%23F4E87C' stroke='%23333' stroke-width='3'/%3E%3Ccircle cx='15' cy='20' r='3' fill='%23333'/%3E%3Ccircle cx='35' cy='20' r='3' fill='%23333'/%3E%3Cpath d='M20,30 Q30,35 40,30' fill='none' stroke='%23333' stroke-width='2'/%3E%3Cpath d='M50,10 Q55,5 60,10' fill='none' stroke='%23333' stroke-width='2'/%3E%3C/g%3E%3Cg transform='translate(180,100)'%3E%3Cpath d='M0,30 Q-8,15 0,0 Q15,-8 30,0 Q45,8 45,15 Q52,22 45,30 Q38,38 30,38 Q22,45 15,45 Q8,38 0,30 Z' fill='%23F4E87C' stroke='%23333' stroke-width='3'/%3E%3Ccircle cx='12' cy='15' r='2' fill='%23333'/%3E%3Ccircle cx='28' cy='15' r='2' fill='%23333'/%3E%3Cpath d='M15,22 Q22,26 30,22' fill='none' stroke='%23333' stroke-width='2'/%3E%3C/g%3E%3Cg transform='translate(280,120)'%3E%3Cpath d='M0,25 Q-6,12 0,0 Q12,-6 25,0 Q38,6 38,12 Q44,18 38,25 Q32,32 25,32 Q18,38 12,38 Q6,32 0,25 Z' fill='%23F4E87C' stroke='%23333' stroke-width='3'/%3E%3Ccircle cx='10' cy='12' r='2' fill='%23333'/%3E%3Ccircle cx='23' cy='12' r='2' fill='%23333'/%3E%3Cpath d='M12,18 Q18,22 25,18' fill='none' stroke='%23333' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E" alt="はじまり湯のアヒル" style="width: 200px; height: 100px;">
+            </div>
+            <div style="font-size: 3rem;">🌞♨️🌱</div>
         </div>
     </section>
 
-    <section id="features" class="features">
-        <div class="container">
-            <h2>なぜ私たちのコミュニティを選ぶのか</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>最新AI技術</h3>
-                    <p>GPT、Claude、Geminiなど最新のAI技術を活用したプログラミング手法を学べます</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>活発なコミュニティ</h3>
-                    <p>経験豊富な開発者から初心者まで、互いに学び合える環境を提供します</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💻</div>
-                    <h3>実践的プロジェクト</h3>
-                    <p>理論だけでなく、実際のプロジェクトを通じて実践的なスキルを身につけられます</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>豊富な学習リソース</h3>
-                    <p>チュートリアル、コードサンプル、ベストプラクティスなど充実した教材を提供</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>個別サポート</h3>
-                    <p>メンターによる1対1のサポートで、あなたの学習を加速させます</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>キャリア支援</h3>
-                    <p>就職・転職活動のサポートや、フリーランス案件の紹介も行います</p>
-                </div>
+    <div class="container">
+        <!-- アンケート -->
+        <section class="section survey-section">
+            <h2>お裾分けで何が欲しいですか？</h2>
+            <div class="intro-text">
+                <p>新規就農を目指していて、何の作物を育てるか考えているところです。</p>
+                <p>お裾分けで、どんな野菜や果物があると嬉しいですか？</p>
             </div>
-        </div>
-    </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div>
-                    <h2>AIプログラミングの新時代</h2>
-                    <p>人工知能の急速な発展により、プログラミングの世界は大きく変わろうとしています。私たちのコミュニティでは、この変化に対応できる開発者を育成することを目標としています。</p>
-                    <p>初心者から上級者まで、すべてのレベルの学習者に対応したカリキュラムと、実際の業界で活躍する専門家による指導で、あなたのスキルアップをサポートします。</p>
-                    <p>単なる技術習得だけでなく、AI倫理や責任あるAI開発についても学び、未来の技術リーダーを目指しましょう。</p>
+            <form class="survey-form" id="surveyForm">
+                <!-- 野菜の質問 -->
+                <div class="question">
+                    <h3>お裾分けで欲しい野菜はどれですか？</h3>
+                    <div class="options-grid">
+                        <div class="option-button" data-type="vegetable" data-value="きゅうり">
+                            <span class="option-icon">🥒</span>
+                            <span class="option-text">きゅうり</span>
+                        </div>
+                        <div class="option-button" data-type="vegetable" data-value="トマト">
+                            <span class="option-icon">🍅</span>
+                            <span class="option-text">トマト</span>
+                        </div>
+                        <div class="option-button" data-type="vegetable" data-value="ナス">
+                            <span class="option-icon">🍆</span>
+                            <span class="option-text">ナス</span>
+                        </div>
+                        <div class="option-button" data-type="vegetable" data-value="ピーマン">
+                            <span class="option-icon">🫑</span>
+                            <span class="option-text">ピーマン</span>
+                        </div>
+                        <div class="option-button" data-type="vegetable" data-value="ほうれん草">
+                            <span class="option-icon">🥬</span>
+                            <span class="option-text">ほうれん草</span>
+                        </div>
+                        <div class="option-button" data-type="vegetable" data-value="小松菜">
+                            <span class="option-icon">🍃</span>
+                            <span class="option-text">小松菜</span>
+                        </div>
+                        <div class="option-button" data-type="vegetable" data-value="キャベツ">
+                            <span class="option-icon">🥬</span>
+                            <span class="option-text">キャベツ</span>
+                        </div>
+                        <div class="option-button" data-type="vegetable" data-value="レタス">
+                            <span class="option-icon">🥗</span>
+                            <span class="option-text">レタス</span>
+                        </div>
+                        <div class="option-button" data-type="vegetable" data-value="大根">
+                            <span class="option-icon">🥕</span>
+                            <span class="option-text">大根</span>
+                        </div>
+                        <div class="option-button" data-type="vegetable" data-value="人参">
+                            <span class="option-icon">🥕</span>
+                            <span class="option-text">人参</span>
+                        </div>
+                        <div class="option-button" data-type="vegetable" data-value="玉ねぎ">
+                            <span class="option-icon">🧅</span>
+                            <span class="option-text">玉ねぎ</span>
+                        </div>
+                        <div class="option-button" data-type="vegetable" data-value="じゃがいも">
+                            <span class="option-icon">🥔</span>
+                            <span class="option-text">じゃがいも</span>
+                        </div>
+                        <div class="option-button other-option" data-type="vegetable" data-value="その他">
+                            <span class="option-icon">👇</span>
+                            <span class="option-text">その他（他に何かございますか？）</span>
+                            <input type="text" class="other-input" id="vegetableOther" placeholder="具体的に教えてください">
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <img src="https://via.placeholder.com/500x400/667eea/ffffff?text=AI+Programming" alt="AI Programming" style="width: 100%; border-radius: 15px;">
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>1,500+</h3>
-                    <p>アクティブメンバー</p>
+                <!-- 果物の質問 -->
+                <div class="question">
+                    <h3>お裾分けで欲しい果物はどれですか？</h3>
+                    <div class="options-grid">
+                        <div class="option-button" data-type="fruit" data-value="りんご">
+                            <span class="option-icon">🍎</span>
+                            <span class="option-text">りんご</span>
+                        </div>
+                        <div class="option-button" data-type="fruit" data-value="みかん">
+                            <span class="option-icon">🍊</span>
+                            <span class="option-text">みかん</span>
+                        </div>
+                        <div class="option-button" data-type="fruit" data-value="いちご">
+                            <span class="option-icon">🍓</span>
+                            <span class="option-text">いちご</span>
+                        </div>
+                        <div class="option-button" data-type="fruit" data-value="ぶどう">
+                            <span class="option-icon">🍇</span>
+                            <span class="option-text">ぶどう</span>
+                        </div>
+                        <div class="option-button" data-type="fruit" data-value="もも">
+                            <span class="option-icon">🍑</span>
+                            <span class="option-text">もも</span>
+                        </div>
+                        <div class="option-button" data-type="fruit" data-value="なし">
+                            <span class="option-icon">🍐</span>
+                            <span class="option-text">なし</span>
+                        </div>
+                        <div class="option-button" data-type="fruit" data-value="柿">
+                            <span class="option-icon">🟠</span>
+                            <span class="option-text">柿</span>
+                        </div>
+                        <div class="option-button" data-type="fruit" data-value="メロン">
+                            <span class="option-icon">🍈</span>
+                            <span class="option-text">メロン</span>
+                        </div>
+                        <div class="option-button" data-type="fruit" data-value="スイカ">
+                            <span class="option-icon">🍉</span>
+                            <span class="option-text">スイカ</span>
+                        </div>
+                        <div class="option-button other-option" data-type="fruit" data-value="その他">
+                            <span class="option-icon">👇</span>
+                            <span class="option-text">その他（これぞ究極！）</span>
+                            <input type="text" class="other-input" id="fruitOther" placeholder="究極の果物を教えてください">
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <h3>200+</h3>
-                    <p>完了プロジェクト</p>
-                </div>
-                <div class="stat-item">
-                    <h3>95%</h3>
-                    <p>就職成功率</p>
-                </div>
-                <div class="stat-item">
-                    <h3>24/7</h3>
-                    <p>コミュニティサポート</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            </form>
 
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2>料金プラン</h2>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>ベーシック</h3>
-                    <div class="price">¥9,800<small>/月</small></div>
-                    <ul class="pricing-features">
-                        <li>✓ 基本的な学習コンテンツ</li>
-                        <li>✓ コミュニティフォーラム参加</li>
-                        <li>✓ 月1回のグループセッション</li>
-                        <li>✓ 基本的なプロジェクト参加</li>
-                    </ul>
-                    <a href="#" class="cta-button">選択する</a>
-                </div>
-                <div class="pricing-card featured">
-                    <h3>プロ</h3>
-                    <div class="price">¥19,800<small>/月</small></div>
-                    <ul class="pricing-features">
-                        <li>✓ 全ての学習コンテンツ</li>
-                        <li>✓ 1対1メンタリング（月2回）</li>
-                        <li>✓ 実践プロジェクト参加</li>
-                        <li>✓ 就職・転職サポート</li>
-                        <li>✓ 優先サポート</li>
-                    </ul>
-                    <a href="#" class="cta-button">選択する</a>
-                </div>
-                <div class="pricing-card">
-                    <h3>エンタープライズ</h3>
-                    <div class="price">¥39,800<small>/月</small></div>
-                    <ul class="pricing-features">
-                        <li>✓ プロプランの全機能</li>
-                        <li>✓ 週1回の1対1セッション</li>
-                        <li>✓ カスタムプロジェクト開発</li>
-                        <li>✓ 専用チャットサポート</li>
-                        <li>✓ 業界コネクション紹介</li>
-                    </ul>
-                    <a href="#" class="cta-button">選択する</a>
-                </div>
+            <div class="submit-section">
+                <button type="button" class="submit-button" id="submitButton">
+                    送信する
+                </button>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <footer id="contact">
+    <!-- フッター -->
+    <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>コミュニティ</h3>
-                    <a href="#">Discord参加</a>
-                    <a href="#">Slack参加</a>
-                    <a href="#">GitHub</a>
-                    <a href="#">YouTube</a>
-                </div>
-                <div class="footer-section">
-                    <h3>学習リソース</h3>
-                    <a href="#">チュートリアル</a>
-                    <a href="#">コードサンプル</a>
-                    <a href="#">ブログ</a>
-                    <a href="#">FAQ</a>
-                </div>
-                <div class="footer-section">
-                    <h3>サポート</h3>
-                    <a href="#">お問い合わせ</a>
-                    <a href="#">技術サポート</a>
-                    <a href="#">利用規約</a>
-                    <a href="#">プライバシーポリシー</a>
-                </div>
-                <div class="footer-section">
-                    <h3>お問い合わせ</h3>
-                    <p>Email: info@ai-programming.jp</p>
-                    <p>Tel: 03-1234-5678</p>
-                    <p>〒100-0001</p>
-                    <p>東京都千代田区千代田1-1</p>
-                </div>
+            <h3>はじまり湯</h3>
+            <div class="social-links">
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="Facebook">📘</a>
             </div>
-            <p>&copy; 2024 AI Programming Community. All rights reserved.</p>
+            <p style="margin-top: 30px; opacity: 0.8;">© 2024 はじまり湯. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const optionButtons = document.querySelectorAll('.option-button');
+            const submitButton = document.getElementById('submitButton');
+            const selectedData = {
+                vegetables: [],
+                fruits: []
+            };
 
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(102, 126, 234, 0.95)';
-            } else {
-                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            // オプションボタンのクリックイベント
+            optionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const type = this.dataset.type;
+                    const value = this.dataset.value;
+                    const otherInput = this.querySelector('.other-input');
+
+                    // 選択状態をトグル
+                    this.classList.toggle('selected');
+
+                    if (this.classList.contains('selected')) {
+                        // 選択された場合
+                        if (value === 'その他') {
+                            // その他の場合は入力フィールドを表示
+                            if (otherInput) {
+                                otherInput.classList.add('show');
+                                otherInput.focus();
+                            }
+                        }
+                        
+                        // データに追加
+                        const category = type === 'vegetable' ? 'vegetables' : 'fruits';
+                        if (!selectedData[category].includes(value)) {
+                            selectedData[category].push(value);
+                        }
+                    } else {
+                        // 選択解除された場合
+                        if (value === 'その他') {
+                            // その他の場合は入力フィールドを非表示
+                            if (otherInput) {
+                                otherInput.classList.remove('show');
+                                otherInput.value = '';
+                            }
+                        }
+                        
+                        // データから削除
+                        const category = type === 'vegetable' ? 'vegetables' : 'fruits';
+                        const index = selectedData[category].indexOf(value);
+                        if (index > -1) {
+                            selectedData[category].splice(index, 1);
+                        }
+                    }
+
+                    updateSubmitButton();
+                });
+            });
+
+            // その他の入力フィールドのイベント
+            document.querySelectorAll('.other-input').forEach(input => {
+                input.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+
+            // 送信ボタンの状態更新
+            function updateSubmitButton() {
+                const hasSelection = selectedData.vegetables.length > 0 || selectedData.fruits.length > 0;
+                submitButton.disabled = !hasSelection;
             }
+
+            // 送信ボタンのクリックイベント
+            submitButton.addEventListener('click', function() {
+                if (this.disabled) return;
+
+                // その他の入力値を取得
+                const vegetableOtherInput = document.getElementById('vegetableOther');
+                const fruitOtherInput = document.getElementById('fruitOther');
+                
+                let vegetableOtherValue = '';
+                let fruitOtherValue = '';
+                
+                if (vegetableOtherInput && vegetableOtherInput.classList.contains('show')) {
+                    vegetableOtherValue = vegetableOtherInput.value.trim();
+                }
+                
+                if (fruitOtherInput && fruitOtherInput.classList.contains('show')) {
+                    fruitOtherValue = fruitOtherInput.value.trim();
+                }
+
+                // Google Formsに送信するためのURLを構築
+                const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdYBEqDIF97qv2xdHjKJ0nmiVEfc0_7ycpRRtVv1BTRePPpGQ/formResponse';
+                
+                // 選択された項目を結合
+                let vegetableValues = [];
+                selectedData.vegetables.forEach(veg => {
+                    if (veg === 'その他' && vegetableOtherValue) {
+                        vegetableValues.push(`その他: ${vegetableOtherValue}`);
+                    } else if (veg !== 'その他') {
+                        vegetableValues.push(veg);
+                    }
+                });
+
+                let fruitValues = [];
+                selectedData.fruits.forEach(fruit => {
+                    if (fruit === 'その他' && fruitOtherValue) {
+                        fruitValues.push(`その他: ${fruitOtherValue}`);
+                    } else if (fruit !== 'その他') {
+                        fruitValues.push(fruit);
+                    }
+                });
+
+                // URLパラメータを構築（実際のentry IDは後で設定）
+                const params = new URLSearchParams();
+                
+                // 野菜の回答（複数の場合はカンマ区切り）
+                if (vegetableValues.length > 0) {
+                    params.append('entry.123456789', vegetableValues.join(', '));
+                }
+                
+                // 果物の回答（複数の場合はカンマ区切り）
+                if (fruitValues.length > 0) {
+                    params.append('entry.987654321', fruitValues.join(', '));
+                }
+
+                // Google Formsを新しいタブで開く
+                const formUrl = `${baseUrl}?${params.toString()}`;
+                window.open(formUrl, '_blank');
+                
+                // 完了メッセージを表示
+                alert('ありがとうございます！Google Formsが開きますので、そちらで送信を完了してください。');
+            });
+
+            // 初期状態で送信ボタンを無効化
+            updateSubmitButton();
         });
     </script>
 </body>
